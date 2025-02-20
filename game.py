@@ -2,78 +2,28 @@ import pygame
 import sys
 import random
 import os
+import time
 
-pygame.init()
+pygame.font.init()
 
-SCREEN_WIDTH = 1100
-SCREEN_HEIGHT = 700
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Flappy Bird Game")
-clock = pygame.time.Clock()
+SCREEN_WIDTH = 600
+SCREEN_HEIGHT = 800
+FLOOR = 730
+STAT_FONT = pygame.font.SysFont("comicsans", 50)
+END_FONT = pygame.font.SysFont("comicsans", 70)
+DRAW_LINES = False
 
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-Bird_image = pygame.image.load("game_images/bird3.png").convert_alpha()
-class Bird:
-    image = Bird_image
-    max_rotaton = 25 
-    rotation_velo = 20 
-    Animation_time = 5
+WIN = pygame.display.set_mode(SCREEN_WIDTH, SCREEN_HEIGHT)
+pygmae.display.set_caption("FAPPY BIRD")
 
-    def __init__(self,image, x, y ):
-        self.x = x 
-        self.y = y
-        self.tilt = 0
-        self.tick_count = 0
-        self.vel = 0
-        self.height = self.y
-        self.img = self.image
-        self.rect = self.image.get_rect(center=x)
-
-    def draw(self, surface):
-        surface.blit(self.image, self.rect)
-
-    def jump(self):
-        self.vel = -10.5
-        self.height = self.y
-
-        
-        
-        
-
-   
-
-
-pipe = []
-pipe_interval = 1500 #ms between adding new pipes 
-pygame.time.set_timer(pygame.USEREVENT, pipe_interval)
-pipe_image = pygame.image.load("game_images/pipe.png").convert_alpha()
-score = 0
-font = pygame.font.SysFont(None, 36)
-
-background = pygame.image.load("game_images/background3.jpg").convert()
-background = pygame.transform.smoothscale(background, (SCREEN_WIDTH, SCREEN_HEIGHT))
-
-bird = Bird('game_images/bird3.png', 30, 40)
-
-while True:
-    clock.tick(60)
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-    
-
-    
-    screen.blit(background, (0, 0))
-    bird.draw(screen)
-    
-    pygame.display.flip()
+pipe_image = pygame.transform.scale2x(pygame.image.load(os.path.join("game_images","pipe.png")).convert_alpha())
+base_image = pygame.transform.scale2x(pygame.image.load(os.path.join("game_images","base.png")).convert_alpha())
+background_image = pygame.transform.scale(pygame.image.load(os.path.join("game_images","bg.png")).convert_alpha(), (600,900))
+bird_images = [pygame.transform.scale2x(pygame.image.load(os.path.join("game_images","bird" + str(x) +".png"))) for x in range(1,4)]
 
 
 
-
-
-
-    clock.tick(60)
+if __name__ == '__main__':
+    local_dir = os.path.dirname(__file__)
+    config_path = os.path.join(local_dir, 'config-feedforward.txt')
+    run(config_path)
