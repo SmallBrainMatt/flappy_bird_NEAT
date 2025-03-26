@@ -38,9 +38,7 @@ Outline the steps required to set up the project locally.
 
   ### Optional: Virtual Environment Setup (recommended)
   Before installing, it's a good idea to set up a virtual environment:
-  ### Windows:
-
-   ```bash
+  # Windows:
   python -m venv venv_name
   venv\Scripts\activate
 
