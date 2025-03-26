@@ -25,15 +25,16 @@ Outline the steps required to set up the project locally.
    ```bash
    cd flappy_bird_NEAT
 
-2. **RequireMents**
-  # MAC OS Users
+2. **Requirements**
+  
+  ### MAC OS Users
 
   useful link for pygame: https://www.pygame.org/wiki/MacCompile
 
-  # Windows Users
+  ### Windows Users
   
-  ```bash
-  pip install pygame neat-python
+    ```bash
+    pip install pygame neat-python
 
 
   # Optional: Virtual Environment Setup (recommended)
