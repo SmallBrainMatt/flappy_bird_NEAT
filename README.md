@@ -22,7 +22,7 @@ Outline the steps required to set up the project locally.
    ```bash
    git clone https://github.com/your_username/flappy_bird_NEAT.git
 
-   ```bash
+   
    cd flappy_bird_NEAT
 
 2. **Requirements**
@@ -33,7 +33,7 @@ Outline the steps required to set up the project locally.
 
   ### Windows Users
   
-    ```bash
+
     pip install pygame neat-python
 
 
