@@ -37,10 +37,7 @@ cd flappy_bird_NEAT
 
   # Optional: Virtual Environment Setup (recommended)
   Before installing, it's a good idea to set up a virtual environment:
-  # Create virtual environment
   python -m venv venv
-
-  # Activate it
   # Windows:
   venv\Scripts\activate
 
