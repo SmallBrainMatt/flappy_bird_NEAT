@@ -25,7 +25,7 @@ Outline the steps required to set up the project locally.
    
    cd flappy_bird_NEAT
 
-2. **Requirements**
+2. ## Requirements
   
   ### MAC OS Users
 
@@ -33,13 +33,12 @@ Outline the steps required to set up the project locally.
 
   ### Windows Users
   
-
     pip install pygame neat-python
 
 
-  # Optional: Virtual Environment Setup (recommended)
+  ### Optional: Virtual Environment Setup (recommended)
   Before installing, it's a good idea to set up a virtual environment:
-  # Windows:
+  ### Windows:
 
    ```bash
   python -m venv venv_name
@@ -52,16 +51,16 @@ Outline the steps required to set up the project locally.
   # Then install:
   pip install pygame neat-python
 
-3. **Running the game**
+3. # Running the game
 
-  # Windows Users 
+  ### Windows Users 
   python .\run_game.py
   or python3 .\run_game.py
 
-  # UNIX Users
+  ### UNIX Users
   python3 run_game.py
 
 
-4. **Usage**
+4. # Usage
   Look at config.txt and the neat-python documentation to learn about model tuning
   USEFUL LINK: https://neat-python.readthedocs.io/en/latest/index.html
