@@ -22,8 +22,8 @@ Outline the steps required to set up the project locally.
    ```bash
    git clone https://github.com/your_username/flappy_bird_NEAT.git
 
-
-cd flappy_bird_NEAT
+   ```bash
+   cd flappy_bird_NEAT
 
 2. **RequireMents**
   # MAC OS Users
@@ -31,13 +31,16 @@ cd flappy_bird_NEAT
   useful link for pygame: https://www.pygame.org/wiki/MacCompile
 
   # Windows Users
-
+  
+  ```bash
   pip install pygame neat-python
 
 
   # Optional: Virtual Environment Setup (recommended)
   Before installing, it's a good idea to set up a virtual environment:
   # Windows:
+
+   ```bash
   python -m venv venv_name
   venv\Scripts\activate
 
