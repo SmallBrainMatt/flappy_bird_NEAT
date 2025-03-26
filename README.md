@@ -53,12 +53,15 @@ Outline the steps required to set up the project locally.
  # Running the game
 
   ### Windows Users 
-  ``python .\run_game.py
-  ``or python3 .\run_game.py
-
+  ```
+  python .\run_game.py
+  or python3 .\run_game.py
+  ```
   ### UNIX Users
-  ``python3 run_game.py
-
+  ```bash
+  python3 run_game.py
+  ```
+  
  # Usage
   Look at config.txt and the neat-python documentation to learn about model tuning
   USEFUL LINK: https://neat-python.readthedocs.io/en/latest/index.html
