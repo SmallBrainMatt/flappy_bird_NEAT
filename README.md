@@ -43,13 +43,14 @@ Outline the steps required to set up the project locally.
   ``venv\Scripts\activate
 
   # macOS/Linux:
-  ``python -m venv venv_name
-  ``source venv/bin/activate
+``python -m venv venv_name
+  source venv/bin/activate
+``
 
   # Then install:
   pip install pygame neat-python
 
-3. # Running the game
+ # Running the game
 
   ### Windows Users 
   ``python .\run_game.py
@@ -58,7 +59,6 @@ Outline the steps required to set up the project locally.
   ### UNIX Users
   ``python3 run_game.py
 
-
-4. # Usage
+ # Usage
   Look at config.txt and the neat-python documentation to learn about model tuning
   USEFUL LINK: https://neat-python.readthedocs.io/en/latest/index.html
