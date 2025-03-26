@@ -5,9 +5,6 @@ A brief description of your project, highlighting its purpose and main features.
 ## Table of Contents
 
 - [Overview](#overview)
-- [Installation](#installation)
-- [Usage](#usage)
-
 
 ## Overview
 
