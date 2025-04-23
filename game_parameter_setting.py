@@ -8,7 +8,7 @@ floor_starting_y_position = 500 #the starting y position of the floor
 
 #pipe options
 pipe_max_num = 100 #the maximum number of pipes in this game
-pipe_vertical_gap = 170 #the gap between the top pipe and the bottom pipe, the smaller the number, the harder the game
+pipe_vertical_gap = 90 #the gap between the top pipe and the bottom pipe, the smaller the number, the harder the game
 pipe_horizontal_gap = 200 #the gap between two sets of pipes
 pipe_velocity = 5 #the horizontal moving velocity of the pipes, this should equal to floor_velocity
 top_pipe_min_height = 100 #the minimum height of the top pipe (carefully set this number)

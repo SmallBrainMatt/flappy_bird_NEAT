@@ -32,7 +32,7 @@ def get_relevant_pipes(pipes, bird_x):
     relevant_pipes = []
     for pipe in pipes:
         # Is the pipe close enough to be relevant for collision?
-        if pipe.x - 50 < bird_x < pipe.x + pipe.IMG_WIDTH + 10:
+        if pipe.x - 100 < bird_x < pipe.x + pipe.IMG_WIDTH + 100:
             relevant_pipes.append(pipe)
     return relevant_pipes
 
@@ -124,12 +124,17 @@ def main(genomes, config):
                 if visible_pipes:
                     rightmost_pipe = max(visible_pipes, key=lambda p: p.x)
                     pipe.x = rightmost_pipe.x + gp.pipe_horizontal_gap
+                    pipe.random_height() # generate random height for new pipe
+
+                    old_pipe_ids = [pid for pid in passed_pipe_ids if pid.startswith(f"{pipe_idx}-")]
+                    for old_id in old_pipe_ids:
+                        passed_pipe_ids.remove(old_id)
                     if pipe.x > gp.pipe_starting_x_position + (gp.pipe_max_num - 1) * gp.pipe_horizontal_gap:
                         pipe.x = gp.pipe_starting_x_position
                 else:
                     pipe.x = gp.pipe_starting_x_position
+                    pipe.randome_height()
                     
-                pipe.random_height()  # Reset the pipe with a new random height
             
             # Check if any bird has passed this pipe
             for bird_idx, bird in enumerate(birds_list):
@@ -186,7 +191,7 @@ def main(genomes, config):
                 
                 # Normalize delta_x to be between -1 and 1 for better neural network input
                 # Screen width is 800, so we'll normalize based on half that (400)
-                delta_x = delta_x / 400  # This will give us a reasonable range
+                delta_x = delta_x / 100  # This will give us a reasonable range
                 
                 delta_y_top = bird.y - current_pipe.top_pipe_height
                 delta_y_bottom = current_pipe.bottom_pipe_topleft - bird.y
@@ -196,8 +201,8 @@ def main(genomes, config):
                 
                 # Normalize y distances based on screen height (550)
                 # We'll use half the screen height (275) for normalization
-                delta_y_top = delta_y_top / 275
-                delta_y_bottom = delta_y_bottom / 275
+                delta_y_top = delta_y_top / 175
+                delta_y_bottom = delta_y_bottom / 175
                 
                 net_input = (delta_x, delta_y_top, delta_y_bottom)
                 
