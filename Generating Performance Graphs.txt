@@ -1,0 +1,41 @@
+Generating Performance Graphs
+
+Open a Jupyter Notebook or Python script.
+
+Load neat_results.csv and visualize performance:
+
+Example:
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv('neat_results.csv')
+sns.lineplot(x='Generation', y='Best_Fitness', data=df)
+plt.show()
+
+NEAT Configuration
+
+NEAT parameters are stored in config.txt.
+
+You can tweak mutation rates, population size, etc., to explore different evolutionary outcomes.
+
+Auto-Extract NEAT Logs
+
+To extract performance data from NEAT logs:
+
+Save terminal logs to neat_log.txt.
+
+Run this script:
+
+# Provided in documentation, parses neat_log.txt and generates parsed_neat_results.csv
+
+Example Graphs You Can Create:
+
+Fitness over Generations
+
+Species Diversity
+
+Genome Complexity Trends
+
+Genetic Distance over Time
