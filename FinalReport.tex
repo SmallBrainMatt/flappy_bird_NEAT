@@ -118,7 +118,49 @@ This configuration enables a gradual and robust evolution of gameplay intelligen
 
 
 \section{Data Description}
-NOT DONE
+Unlike traditional machine learning projects that rely on static datasets, this project generates data dynamically during the gameplay simulation. Each agent (neural network) interacts with the Flappy Bird environment in real time, receiving a three-dimensional input vector at every frame:
+
+\begin{itemize}
+    \item \textbf{Vertical Distance to Top of Pipe Gap \texttt{(delta\_y\_top)}}:
+        The vertical distance between the bird's position and the top of the next pipe gap, normalized by dividing by 175.
+
+    \item \textbf{Horizontal Distance to pipe center \texttt{(delta\_x)}}:
+        The horizontal distance between the bird's current position and the center of the next pipe gap, normalized by dividing by 100.
+
+    \item \textbf{Vertical Distance to Bottom of Pipe Gap \texttt{(delta\_y\_bottom}}:
+        The vertical distance between the bird's position and the bottom of the next pipe gap, also normalized by dividing by 175.
+\end{itemize}
+
+These features are continuous numerical values and are updated at every game frame. The network's output is a single real number interpreted as a binary action:
+
+\begin{itemize}
+    \item  \textbf{Flap} if output > 0.5
+
+    \item  \textbf{Do Nothing} if output $\leq$ 0.5
+    
+\end{itemize}
+
+Rather than using supervised labels, the agent's performance is evaluated based on \textbf{fitness score}, which is determined by the bird's survival time (number of pipes successfully passed). Longer survival corresponds to a higher fitness score.
+
+\begin{center}
+    $Fitness = (5 \times Score) + (0.2 \times Time Alive) - (Collision Penalty)$
+\end{center}
+
+Where \textbf{Score} increases when the bird successfully passes pipes, \textbf{Time Alive} rewards longer survival even if pipes are not passes, and \textbf{Collision Penalty} heavily punishes crashing into pipes.
+
+Additionally, during training we track:
+
+\begin{itemize}
+    \item \textbf{Maximum Fitness} per generation (best agent performance),
+
+    \item \textbf{Average Fitness} across all agents,
+
+    \item \textbf{Standard Deviation of Fitness} to monitor diversity and convergence across generations.
+\end{itemize}
+
+A high maximum fitness signals strong individual solutions, while a low standard deviation over time suggests that the population is converging to similar strategies. This real-time generated data ensures continual exposure to diverse game states, preventing overfitting to specific pip configurations.
+
+
 
 \section{Result Analysis}
 PLEASE DO THIS THESE ARE SOME THINGS I THINK THAT WOULD BE IMPORTANT TO GO OVER
