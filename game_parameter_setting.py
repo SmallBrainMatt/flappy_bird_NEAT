@@ -1,6 +1,6 @@
 #set the game options
 FPS = 30 #run the game at rate FPS, the speed at which images are shown
-max_score = 100 #the maximum score of the game before we break the loop
+max_score = 40 #the maximum score of the game before we break the loop
 
 #floor options
 floor_velocity = 5 #the horizontal moving velocity of the floor, this should equal to pipe_velocity
@@ -9,7 +9,7 @@ floor_starting_y_position = 500 #the starting y position of the floor
 #pipe options
 pipe_max_num = 100 #the maximum number of pipes in this game
 pipe_vertical_gap = 90 #the gap between the top pipe and the bottom pipe, the smaller the number, the harder the game
-pipe_horizontal_gap = 200 #the gap between two sets of pipes
+pipe_horizontal_gap = 170 #the gap between two sets of pipes
 pipe_velocity = 5 #the horizontal moving velocity of the pipes, this should equal to floor_velocity
 top_pipe_min_height = 100 #the minimum height of the top pipe (carefully set this number)
 top_pipe_max_height = 300 #the maximum height of the top pipe (carefully set this number)

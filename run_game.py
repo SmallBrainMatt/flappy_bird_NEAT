@@ -21,7 +21,7 @@ def run(config_path):
     population.add_reporter(stats)
     # population.add_reporter(neat.Checkpointer(5))
     
-    winner = population.run(main, 20)
+    winner = population.run(main, 10)
     
     print('\nBest genome:\n{!s}'.format(winner))
 

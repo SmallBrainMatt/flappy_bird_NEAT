@@ -10,11 +10,11 @@ from check_collision import collide
 from draw_game import draw_game
 
 # Function to get the index of the next pipe to use as input for neural network
-def get_index(pipes, birds):
-    if not pipes or not birds:
+def get_index(pipes, bird):
+    if not pipes:
         return 0
     
-    bird_x = birds[0].x
+    bird_x = bird.x
     
     # Find all pipes ahead of the bird
     ahead_pipes = [i for i, pipe in enumerate(pipes) if pipe.x + pipe.IMG_WIDTH > bird_x]
@@ -40,9 +40,9 @@ def get_relevant_pipes(pipes, bird_x):
 generation = 0
 
 # Define the probability threshold to jump
-prob_threshold_to_jump = 0
+prob_threshold_to_jump = 0.3
 # Punishment for failing
-failed_punishment = 20.0
+failed_punishment = 50.0
 
 #define a function to run the main game loop
 def main(genomes, config):
@@ -111,8 +111,6 @@ def main(genomes, config):
         
         floor.move() #move the floor
         
-        pipe_input_index = get_index(pipes_list, birds_list) #get the input index of the pipes list
-        
         # Track pipes that are passed by birds
         for pipe_idx, pipe in enumerate(pipes_list):
             pipe.move() #move the pipe
@@ -133,7 +131,7 @@ def main(genomes, config):
                         pipe.x = gp.pipe_starting_x_position
                 else:
                     pipe.x = gp.pipe_starting_x_position
-                    pipe.randome_height()
+                    pipe.random_height()
                     
             
             # Check if any bird has passed this pipe
@@ -176,9 +174,12 @@ def main(genomes, config):
                     bird_failed = True
                     break
                     
+            # Calculate the specific pipe index for this bird
+            bird_pipe_index = get_index(pipes_list, bird)
+            
             # Make sure we have a valid pipe to use as input for neural network
-            if pipe_input_index < len(pipes_list):
-                current_pipe = pipes_list[pipe_input_index]
+            if bird_pipe_index < len(pipes_list):
+                current_pipe = pipes_list[bird_pipe_index]
                 
                 # Input for neural network
                 # Calculate the actual distance to the current pipe's center
@@ -221,7 +222,7 @@ def main(genomes, config):
                 
                 #the fitness function is a combination of game score, alive time, and a punishment for collision
                 # Give more weight to passing pipes (multiply by 10) and less to survival time
-                genomes_list[index].fitness = (bird_score * 10) + (game_time * 0.1) - bird_failed * failed_punishment
+                genomes_list[index].fitness = (bird_score * 5) + (game_time * 0.2) - bird_failed * failed_punishment
                 
                 if bird_failed:
                     birds_to_remove.append(index)
