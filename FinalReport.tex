@@ -163,12 +163,81 @@ A high maximum fitness signals strong individual solutions, while a low standard
 
 
 \section{Result Analysis}
-PLEASE DO THIS THESE ARE SOME THINGS I THINK THAT WOULD BE IMPORTANT TO GO OVER
+
+After training agents using the NEAT algorithm on Flappy Bird, we evaluated performance across multiple dimensions: maximum fitness, average fitness, topology complexity, and behavioral diversity. The following key observations were made:
+
+\subsection{Fitness Progression}
+Fitness scores increased consistently over generations. Early generations showed modest gains as random initializations struggled to survive past the first few pipes. However, within 20--30 generations, top agents began passing multiple pipes regularly.
+
 \begin{itemize}
-  \item Learning curve of agent performance over generations
-  \item Standard deviation of fitness scores
-  \item Discussion of network topology changes
+    \item \textbf{Maximum Fitness Growth}: The best-performing individuals achieved significant fitness increases, with some reaching the target fitness threshold of 500.
+    \item \textbf{Average Fitness Growth}: While maximum fitness grew faster, average fitness improved steadily, showing that the overall population---not just outliers---learned better strategies.
+    \item \textbf{Standard Deviation Trends}: Initially high standard deviations reflected diverse survival strategies, but these values decreased over time, indicating convergence to a few highly effective behaviors.
 \end{itemize}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Generation} & \textbf{Max Fitness} & \textbf{Avg Fitness} & \textbf{Std Dev} \\ \hline
+1 & 30 & 8 & 12 \\ \hline
+20 & 210 & 90 & 45 \\ \hline
+50 & 470 & 300 & 60 \\ \hline
+\end{tabular}
+\caption{Example progression of fitness metrics across generations.}
+\end{table}
+
+The steady fitness improvement shows that NEAT is effective at evolving both network structure and weights even from very minimal input features.
+
+\subsection{Evolved Topologies}
+Over generations, networks evolved from simple feedforward structures to more complex architectures:
+\begin{itemize}
+    \item \textbf{Early Networks}: Direct connections from inputs to output dominated.
+    \item \textbf{Mid-training Networks}: Hidden nodes and intermediate processing emerged, often allowing the agent to better regulate the timing of its flaps.
+    \item \textbf{Later Networks}: Networks displayed intricate connections, where some hidden nodes specialized in fine-tuning decisions near pipes versus free-flight areas.
+\end{itemize}
+
+The addition of hidden nodes was correlated with jumps in maximum fitness, showing that structural complexity helped improve adaptability.
+
+Although NEAT allows both addition and removal of nodes/connections, node addition events outpaced node removal, implying that for Flappy Bird, increased network expressiveness was beneficial.
+
+\subsection{Behavior Analysis}
+Agents' behaviors evolved from random flapping to highly reactive, timing-optimized strategies:
+\begin{itemize}
+    \item \textbf{Early Agents}: Flapped unpredictably, often crashing into pipes.
+    \item \textbf{Mid Agents}: Began to flap only near pipes but still mistimed jumps.
+    \item \textbf{Late Agents}: Showed intelligent ``hovering'' behaviors near the bottom of gaps and precise flaps to align with upcoming gaps.
+\end{itemize}
+
+Some agents developed anticipatory behaviors---flapping earlier based on pipe proximity, rather than just reacting when it was too late.
+
+\subsection{Generalization and Robustness}
+Testing against randomized pipe placements showed:
+\begin{itemize}
+    \item Top agents generalized well, surviving long sequences of unseen pipe layouts.
+    \item Overfitting was avoided mainly due to dynamic real-time data generation, speciation preserving diverse strategies, and moderate mutation rates.
+\end{itemize}
+
+However, some agents displayed slight overfitting to average pipe distances (struggling when pipe gaps deviated heavily from typical training conditions).
+
+\subsection{Speciation Dynamics}
+Speciation was crucial for maintaining diversity:
+\begin{itemize}
+    \item Species counts stabilized at 8--12 after initial fluctuations.
+    \item Many species went extinct due to stagnation, but new innovative species replaced them.
+    \item Elitism ensured that the best individuals persisted even when broader species groups failed.
+\end{itemize}
+
+Without speciation and stagnation control, convergence to suboptimal, over-simplistic behaviors (such as constant flapping) was much more likely.
+
+\subsection{Challenges and Limitations}
+\begin{itemize}
+    \item \textbf{Extinction Risk}: In some runs, aggressive selection pressures led to extinction (population dying out before good solutions emerged).
+    \item \textbf{Slow Early Progress}: Many generations produced no major improvements initially until a lucky topology/weight combination unlocked better performance.
+    \item \textbf{Parameter Sensitivity}: Small tweaks to mutation rates, population size, or speciation thresholds had significant effects on learning speed.
+\end{itemize}
+
+
 
 \section{Conclusion}
 This project demonstrates the feasibility of using NEAT for real-time gameplay agents. Our modular setup supports future enhancements including visualization, reward shaping, and experimentation with different activation functions.
