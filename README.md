@@ -48,7 +48,7 @@ Outline the steps required to set up the project locally.
 
   # Then install:
   ```
-  pip install pygame neat-python
+  pip install pygame neat-python matplotlib seaborn numpy pandas
   ```
  # Running the game
 
